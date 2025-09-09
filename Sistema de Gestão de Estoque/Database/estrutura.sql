@@ -1,0 +1,141 @@
+-- --------------------------------------------------------
+-- Servidor:                     127.0.0.1
+-- Versão do servidor:           8.0.42 - MySQL Community Server - GPL
+-- OS do Servidor:               Win64
+-- --------------------------------------------------------
+
+CREATE DATABASE IF NOT EXISTS `atacadodb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `atacadodb`;
+
+-- Tabela fornecedores
+CREATE TABLE IF NOT EXISTS `fornecedores` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Nome` varchar(100) NOT NULL,
+  `CNPJ` varchar(20) NOT NULL,
+  `Telefone` varchar(20) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Tabela produtos
+CREATE TABLE IF NOT EXISTS `produtos` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Nome` varchar(100) NOT NULL,
+  `FornecedorId` int NOT NULL,
+  `Preco` decimal(10,2) NOT NULL,
+  `Estoque` int NOT NULL,
+  `EstoqueMinimo` int NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `IX_Produtos_FornecedorId` (`FornecedorId`)
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Tabela usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Nome` varchar(100) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Senha` varchar(100) NOT NULL,
+  `DataCriacao` date NOT NULL,
+  `Telefone` varchar(50) DEFAULT NULL,
+  `DataNascimento` date DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Tabela EF Migrations History
+CREATE TABLE IF NOT EXISTS `__efmigrationshistory` (
+  `MigrationId` varchar(150) NOT NULL,
+  `ProductVersion` varchar(32) NOT NULL,
+  PRIMARY KEY (`MigrationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Procedures (apenas para MySQL, editor pode marcar como aviso)
+-- POMELO_AFTER_ADD_PRIMARY_KEY
+CREATE PROCEDURE `POMELO_AFTER_ADD_PRIMARY_KEY`(
+    IN `SCHEMA_NAME_ARGUMENT` VARCHAR(255),
+    IN `TABLE_NAME_ARGUMENT` VARCHAR(255),
+    IN `COLUMN_NAME_ARGUMENT` VARCHAR(255)
+)
+BEGIN
+    DECLARE HAS_AUTO_INCREMENT_ID INT;
+    DECLARE PRIMARY_KEY_COLUMN_NAME VARCHAR(255);
+    DECLARE PRIMARY_KEY_TYPE VARCHAR(255);
+    DECLARE SQL_EXP VARCHAR(1000);
+    
+    SELECT COUNT(*) INTO HAS_AUTO_INCREMENT_ID
+    FROM `information_schema`.`COLUMNS`
+    WHERE `TABLE_SCHEMA` = IFNULL(SCHEMA_NAME_ARGUMENT, SCHEMA())
+      AND `TABLE_NAME` = TABLE_NAME_ARGUMENT
+      AND `COLUMN_NAME` = COLUMN_NAME_ARGUMENT
+      AND `COLUMN_TYPE` LIKE '%int%'
+      AND `COLUMN_KEY` = 'PRI';
+    
+    IF HAS_AUTO_INCREMENT_ID THEN
+        SELECT `COLUMN_TYPE` INTO PRIMARY_KEY_TYPE
+        FROM `information_schema`.`COLUMNS`
+        WHERE `TABLE_SCHEMA` = IFNULL(SCHEMA_NAME_ARGUMENT, SCHEMA())
+          AND `TABLE_NAME` = TABLE_NAME_ARGUMENT
+          AND `COLUMN_NAME` = COLUMN_NAME_ARGUMENT
+          AND `COLUMN_TYPE` LIKE '%int%'
+          AND `COLUMN_KEY` = 'PRI';
+          
+        SELECT `COLUMN_NAME` INTO PRIMARY_KEY_COLUMN_NAME
+        FROM `information_schema`.`COLUMNS`
+        WHERE `TABLE_SCHEMA` = IFNULL(SCHEMA_NAME_ARGUMENT, SCHEMA())
+          AND `TABLE_NAME` = TABLE_NAME_ARGUMENT
+          AND `COLUMN_NAME` = COLUMN_NAME_ARGUMENT
+          AND `COLUMN_TYPE` LIKE '%int%'
+          AND `COLUMN_KEY` = 'PRI';
+          
+        SET @SQL_EXP = CONCAT(
+            'ALTER TABLE `', IFNULL(SCHEMA_NAME_ARGUMENT, SCHEMA()), '`.`', TABLE_NAME_ARGUMENT, 
+            '` MODIFY COLUMN `', PRIMARY_KEY_COLUMN_NAME, '` ', PRIMARY_KEY_TYPE, ' NOT NULL AUTO_INCREMENT;'
+        );
+        PREPARE SQL_EXP_EXECUTE FROM @SQL_EXP;
+        EXECUTE SQL_EXP_EXECUTE;
+        DEALLOCATE PREPARE SQL_EXP_EXECUTE;
+    END IF;
+END;
+
+-- POMELO_BEFORE_DROP_PRIMARY_KEY
+CREATE PROCEDURE `POMELO_BEFORE_DROP_PRIMARY_KEY`(
+    IN `SCHEMA_NAME_ARGUMENT` VARCHAR(255),
+    IN `TABLE_NAME_ARGUMENT` VARCHAR(255)
+)
+BEGIN
+    DECLARE HAS_AUTO_INCREMENT_ID TINYINT(1);
+    DECLARE PRIMARY_KEY_COLUMN_NAME VARCHAR(255);
+    DECLARE PRIMARY_KEY_TYPE VARCHAR(255);
+    DECLARE SQL_EXP VARCHAR(1000);
+    
+    SELECT COUNT(*) INTO HAS_AUTO_INCREMENT_ID
+    FROM `information_schema`.`COLUMNS`
+    WHERE `TABLE_SCHEMA` = IFNULL(SCHEMA_NAME_ARGUMENT, SCHEMA())
+      AND `TABLE_NAME` = TABLE_NAME_ARGUMENT
+      AND `Extra` = 'auto_increment'
+      AND `COLUMN_KEY` = 'PRI'
+    LIMIT 1;
+    
+    IF HAS_AUTO_INCREMENT_ID THEN
+        SELECT `COLUMN_TYPE` INTO PRIMARY_KEY_TYPE
+        FROM `information_schema`.`COLUMNS`
+        WHERE `TABLE_SCHEMA` = IFNULL(SCHEMA_NAME_ARGUMENT, SCHEMA())
+          AND `TABLE_NAME` = TABLE_NAME_ARGUMENT
+          AND `COLUMN_KEY` = 'PRI'
+        LIMIT 1;
+        
+        SELECT `COLUMN_NAME` INTO PRIMARY_KEY_COLUMN_NAME
+        FROM `information_schema`.`COLUMNS`
+        WHERE `TABLE_SCHEMA` = IFNULL(SCHEMA_NAME_ARGUMENT, SCHEMA())
+          AND `TABLE_NAME` = TABLE_NAME_ARGUMENT
+          AND `COLUMN_KEY` = 'PRI'
+        LIMIT 1;
+        
+        SET @SQL_EXP = CONCAT(
+            'ALTER TABLE `', IFNULL(SCHEMA_NAME_ARGUMENT, SCHEMA()), '`.`', TABLE_NAME_ARGUMENT, 
+            '` MODIFY COLUMN `', PRIMARY_KEY_COLUMN_NAME, '` ', PRIMARY_KEY_TYPE, ' NOT NULL;'
+        );
+        PREPARE SQL_EXP_EXECUTE FROM @SQL_EXP;
+        EXECUTE SQL_EXP_EXECUTE;
+        DEALLOCATE PREPARE SQL_EXP_EXECUTE;
+    END IF;
+END;

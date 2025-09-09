@@ -1,0 +1,89 @@
+﻿@model Sistema_de_Gestão_de_Estoque.Models.Usuario
+
+<style>
+     .login-container { 
+         max-width: 400px; 
+         margin: 80px auto; 
+         padding: 30px; 
+         background: white; 
+         border-radius: 8px;
+         box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+    
+    } 
+
+    .login-container:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Badge com gradiente */
+    .badge {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #fff;
+    }
+
+    /* Sombra suave no card */
+    .card {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Foto de perfil com borda e sombra */
+        .card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 4px solid #4facfe;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+    /* Bolinha de status online */
+    .position-relative .position-absolute {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #fff;
+    }
+
+    /* Botões arredondados */
+    .btn {
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+
+    
+</style>
+
+<div class="login-container shadow-lg border-0 rounded-4" style="max-width: 420px; margin: auto;">
+
+    <div class="text-center">
+        <img src="~/Imagens/pngwing.com.png" class="rounded-circle border border-3 border-primary shadow-sm " 
+                style="max-width: 120px;"  />
+    </div>
+
+    <div class="Name text-center"> 
+         <h4 class="fw-bold mb-1">@Model.Nome</h4> 
+         <p class="text-muted mb-2">@Model.Email</p>
+        <h6 class="">Telefone: <strong>@Model.Telefone</strong> </h6>
+         <h6 class="">Data de nascimento: <strong>@Model.DataNascimento</strong> </h6>
+
+         <p class="small text-muted">Membro desde: <strong>@Model.DataCriacao</strong></p>
+
+         <a href="/Accounts/Logout" class="btn btn-outline-danger rounded-pill px-4">Sair</a> 
+
+     </div> 
+
+
+
+</div>

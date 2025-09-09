@@ -1,0 +1,11 @@
+﻿@model Sistema_de_Gestão_de_Estoque.Models.Produto
+
+<h2>Confirmar Exclusão</h2>
+
+<p>Tem certeza que deseja excluir o produto <strong>@Model.Nome</strong>?</p>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger" type="submit">Excluir</button>
+    <a class="btn btn-primary" href="/Produtos/Index">Cancelar</a>
+</form>

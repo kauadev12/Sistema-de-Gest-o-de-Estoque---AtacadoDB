@@ -1,0 +1,11 @@
+﻿@model Sistema_de_Gestão_de_Estoque.Models.Fornecedor
+
+<h2>Detalhes do Fornecedor</h2>
+
+<p><strong>Nome:</strong> @Model.Nome</p>
+<p><strong>CNPJ:</strong> @Model.CNPJ</p>
+<p><strong>Telefone:</strong> @Model.Telefone</p>
+<p><strong>Email:</strong> @Model.Email</p>
+
+<a class="btn btn-primary" href="/Fornecedores/Edit/@Model.Id">Editar</a> |
+<a class="btn btn-danger" href="/Fornecedores/Index">Voltar</a>

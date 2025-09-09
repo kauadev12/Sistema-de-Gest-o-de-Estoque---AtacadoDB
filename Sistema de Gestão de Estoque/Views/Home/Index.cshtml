@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+
+        <!-- Card Produtos -->
+        <div class="col-md-4">
+            <a asp-controller="Produtos" asp-action="Index" class="text-decoration-none">
+                <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded hover-card">
+                    <div class="card-body">
+                        <i class="bi bi-box-seam" style="font-size: 3rem; color: #007bff;"></i>
+                        <h5 class="card-title mt-3">Produtos</h5>
+                        <p class="card-text">Gerencie seus produtos cadastrados</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Card Fornecedores -->
+        <div class="col-md-4">
+            <a asp-controller="Fornecedores" asp-action="Index" class="text-decoration-none">
+                <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded ">
+                    <div class="card-body">
+                        <i class="bi bi-people-fill" style="font-size: 3rem; color: #28a745;"></i>
+                        <h5 class="card-title mt-3">Fornecedores</h5>
+                        <p class="card-text">Controle seus fornecedores cadastrados</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Estilo extra -->
+<style>
+    /* .hover-card { */
+    /*     transition: transform 0.2s ease, box-shadow 0.2s ease; */
+    /* } */
+
+    /*     .hover-card:hover { */
+    /*         transform: scale(1.05); */
+    /*         box-shadow: 0 8px 20px rgba(0,0,0,0.3); */
+    /*     } */
+</style>

@@ -1,0 +1,13 @@
+﻿@model Sistema_de_Gestão_de_Estoque.Models.Produto
+
+
+<h2>Detahes do produto</h2>
+
+<p><strong>Nome:</strong> @Model.Nome</p>
+<p><strong>Fornecedor:</strong> @Model.Fornecedor.Nome</p>
+<p><strong>Preço:</strong> @Model.Preco</p>
+<p><strong>Estoque:</strong> @Model.Estoque</p>
+<p><strong>Estoque Minimo:</strong> @Model.EstoqueMinimo</p>
+
+<a class="btn btn-primary" href="/Produtos/Edit/@Model.Id">Editar</a> |
+<a class="btn btn-danger" href="/Produtos/Index">Voltar</a>

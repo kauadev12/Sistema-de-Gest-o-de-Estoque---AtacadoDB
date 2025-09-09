@@ -1,0 +1,40 @@
+﻿@model Sistema_de_Gestão_de_Estoque.Models.Produto
+
+<style>
+	.edit-container {
+		max-width: 400px;
+		margin: 80px auto;
+		padding: 30px;
+		background: white;
+		border-radius: 8px;
+		box-shadow: 0 0 10px rgba(0,0,0,0.2);
+	}
+</style>
+
+<div class="edit-container">
+	<form asp-action="Edit">
+		<h1 class="text-center">Editar produto</h1>
+		<input type="hidden" asp-for="Id" />
+
+		<label>Nome:</label><br />
+		<input asp-for="Nome" class="form-control" />
+
+		<label>Fornecedor:</label> <br />
+		<select asp-for="FornecedorId" asp-items="ViewBag.Fornecedores" class="form-control">
+			<option value="">-- Selecione um fornecedor --</option>
+		</select>
+
+		<label>Preço:</label><br />
+		<input asp-for="Preco" class="form-control" />
+
+		<label>Estoque:</label><br />
+		<input asp-for="Estoque" class="form-control" />
+
+		<label>Estoque Minimo:</label><br />
+		<input asp-for="EstoqueMinimo" class="form-control" /><p></p>
+
+		<div class="text-center">
+			<button class="btn btn-primary" type="submit">Salvar</button>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,41 @@
+﻿@model Sistema_de_Gestão_de_Estoque.Models.Usuario
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+
+<form asp-action="Login" method="post">
+    
+    <div class="text-center">
+        <h1>Login</h1>
+    </div>
+    <div class="form-group" >
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control"  />
+        <span asp-validation-for="Email" class="text-danger" ></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Senha"></label>
+        <input asp-for="Senha" class="form-control" type="password" required />
+        <span asp-validation-for="Senha" class="text-danger"></span>
+    </div> 
+    <p></p>
+    <div class="text-center">
+        <button type="submit" class="btn btn-success">Entrar</button>
+        <a href="/Accounts/Register" class="btn btn-primary">Cadastrar-se</a>
+    </div>
+</form>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div style="color:red">@ViewBag.ErrorMessage</div>
+}
+
+@if (ViewBag.Mensagem != null)
+{
+    <div style="color:green">@ViewBag.Mensagem</div>
+}
+
+
+

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Sistema_de_Gestão_de_Estoque.Models.Fornecedor>
+
+<h2 class="text-center">Lista de Fornecedores</h2>
+<a class="btn btn-primary" href="/Fornecedores/Create">Novo Fornecedor</a>
+<p></p>
+
+<form method="get" asp-action="Index" asp-controller="Fornecedores" class="mb-3">
+	<div class="input-group">
+		<input type="text" class="form-control" id="filtro" name="filtro"
+               placeholder="Pesquisar por nome ou CNPJ" value="@(ViewContext.HttpContext.Request.Query["filtro"])" />
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+	</div>
+	
+</form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.CNPJ</td>
+                <td>@item.Telefone</td>
+                <td>@item.Email</td>
+                <td>
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Excluir</a> |
+                    <a class="btn btn-dark" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav>
+    <ul class="pagination">
+        @if (ViewBag.PaginaAtual > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { pagina = ViewBag.PaginaAtual - 1, filtro = ViewBag.Filtro })">Anterior</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+        {
+            <li class="page-item @(i == ViewBag.PaginaAtual ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { pagina = i, filtro = ViewBag.Filtro })">@i</a>
+            </li>
+        }
+
+        @if (ViewBag.PaginaAtual < ViewBag.TotalPaginas)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { pagina = ViewBag.PaginaAtual + 1, filtro = ViewBag.Filtro })">Próxima</a>
+            </li>
+        }
+    </ul>
+</nav> 
