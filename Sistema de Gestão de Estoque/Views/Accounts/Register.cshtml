@@ -23,7 +23,7 @@
     <br />
     <div class="form-group">
         <label asp-for="Telefone"></label>
-        <input asp-for="Telefone" type="text" placeholder="(00) 00000-0000" required class="form-control" />
+        <input asp-for="Telefone" id="telefone" type="text" placeholder="(00) 00000-0000" required class="form-control" />
     </div>
     <br />
     <div class="form-group">
@@ -33,10 +33,22 @@
     <br />
     <div class="form-group">
         <label asp-for="Senha"></label>
-        <input asp-for="Senha" type="password" required class="form-control" />
-    </div>
+        <div class="input-group">
+            <input asp-for="Senha" class="form-control" type="password" id="senha" required />
+            <button class="btn btn-outline-secondary" type="button" onclick="MostrarSenha()">
+                <i class="bi bi-eye" id="icone"></i>
+            </button>
+        </div>
     <br />
     <div class="text-center">
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </div>
 </form>
+
+@section Scripts{
+    <script>
+        $(function(){
+            $('#telefone').mask('(00) 00000-0000');
+        });
+    </script>
+}

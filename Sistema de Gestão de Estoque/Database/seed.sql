@@ -155,3 +155,28 @@ INSERT INTO `produtos` (`Nome`, `FornecedorId`, `Preco`, `Estoque`, `EstoqueMini
 ('Fonte Corsair HX1000',4,900.00,5,1),
 ('Gabinete Lian Li PC-O11',5,750.00,4,1),
 ('Memória RAM 32GB DDR5',6,1200.00,6,2);
+
+-- --------------------------------------------------------
+-- Tabela usuarios (20 usuários fictícios)
+-- --------------------------------------------------------
+INSERT INTO `usuarios` (`Nome`, `Email`, `Senha`, `DataCriacao`, `Telefone`, `DataNascimento`) VALUES
+('João Silva', 'joao@email.com', 'senha123', '2025-01-01', '(11) 91234-5678', '1990-05-12'),
+('Maria Souza', 'maria@email.com', 'senha456', '2025-02-15', '(21) 98765-4321', '1985-08-23'),
+('Carlos Lima', 'carlos@email.com', 'senha789', '2025-03-10', '(31) 99887-6655', '1992-12-01'),
+('Ana Pereira', 'ana@email.com', 'senha101', '2025-03-20', '(11) 93456-7890', '1993-07-14'),
+('Pedro Rocha', 'pedro@email.com', 'senha102', '2025-04-01', '(21) 94567-1234', '1988-11-30'),
+('Fernanda Alves', 'fernanda@email.com', 'senha103', '2025-04-10', '(31) 95678-2345', '1991-02-18'),
+('Lucas Martins', 'lucas@email.com', 'senha104', '2025-04-15', '(11) 96789-3456', '1994-09-22'),
+('Juliana Costa', 'juliana@email.com', 'senha105', '2025-04-20', '(21) 97890-4567', '1990-01-10'),
+('Rafael Oliveira', 'rafael@email.com', 'senha106', '2025-05-01', '(31) 98901-5678', '1987-12-05'),
+('Camila Santos', 'camila@email.com', 'senha107', '2025-05-05', '(11) 99012-6789', '1992-06-16'),
+('Gabriel Ferreira', 'gabriel@email.com', 'senha108', '2025-05-10', '(21) 90123-7890', '1991-04-03'),
+('Mariana Lima', 'mariana@email.com', 'senha109', '2025-05-15', '(31) 91234-8901', '1989-08-09'),
+('Felipe Souza', 'felipe@email.com', 'senha110', '2025-05-20', '(11) 92345-9012', '1993-03-21'),
+('Patrícia Gomes', 'patricia@email.com', 'senha111', '2025-05-25', '(21) 93456-0123', '1990-07-12'),
+('Bruno Carvalho', 'bruno@email.com', 'senha112', '2025-06-01', '(31) 94567-1234', '1992-11-04'),
+('Aline Rocha', 'aline@email.com', 'senha113', '2025-06-05', '(11) 95678-2345', '1991-09-17'),
+('Thiago Mendes', 'thiago@email.com', 'senha114', '2025-06-10', '(21) 96789-3456', '1988-02-28'),
+('Renata Martins', 'renata@email.com', 'senha115', '2025-06-15', '(31) 97890-4567', '1990-10-20'),
+('Eduardo Pereira', 'eduardo@email.com', 'senha116', '2025-06-20', '(11) 98901-5678', '1994-05-14'),
+('Isabela Fernandes', 'isabela@email.com', 'senha117', '2025-06-25', '(21) 99012-6789', '1993-12-30');

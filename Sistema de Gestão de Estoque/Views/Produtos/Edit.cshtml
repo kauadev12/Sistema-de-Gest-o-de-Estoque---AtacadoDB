@@ -25,7 +25,7 @@
 		</select>
 
 		<label>Preço:</label><br />
-		<input asp-for="Preco" class="form-control" />
+		<input asp-for="Preco" id="money" class="form-control" />
 
 		<label>Estoque:</label><br />
 		<input asp-for="Estoque" class="form-control" />
@@ -38,3 +38,10 @@
 		</div>
 	</form>
 </div>
+@section Scripts {
+	<script>
+		$(function(){
+			  $('#money').mask("#.##0,00", {reverse: true})
+		});
+	</script>
+}

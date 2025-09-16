@@ -18,7 +18,7 @@ namespace Sistema_de_Gestão_de_Estoque.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Teste()
         {
             return View();
         }

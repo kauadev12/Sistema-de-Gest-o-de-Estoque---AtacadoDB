@@ -4,7 +4,6 @@
 }
 
 
-
 <form asp-action="Login" method="post">
     
     <div class="text-center">
@@ -12,13 +11,24 @@
     </div>
     <div class="form-group" >
         <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control"  />
+        <div class="input-group">
+            <input asp-for="Email" class="form-control" type="email" required  />
+            <button class=" btn btn-outline-secondary" type="button">
+                <i class="bi bi-person"></i>
+            </button>
+        </div>
         <span asp-validation-for="Email" class="text-danger" ></span>
     </div>
     <div class="form-group">
         <label asp-for="Senha"></label>
-        <input asp-for="Senha" class="form-control" type="password" required />
+        <div class="input-group">
+            <input asp-for="Senha" class="form-control" type="password" id="senha" required  />
+            <button class="btn btn-outline-secondary" type="button" onclick="MostrarSenha()">
+                <i class="bi bi-eye" id="icone"></i>
+            </button>
+        </div>
         <span asp-validation-for="Senha" class="text-danger"></span>
+        
     </div> 
     <p></p>
     <div class="text-center">
@@ -27,6 +37,30 @@
     </div>
 </form>
 
+<script>
+        function MostrarSenha() {
+        var input = document.getElementById("senha");
+        var icone = document.getElementById("icone");
+
+        if (input.type === "password") {
+
+            input.type = "text";
+            icone.classList.remove("bi-eye");
+            icone.classList.add("bi-eye-slash");
+        } else {
+            input.type = "password";
+            icone.classList.remove("bi-eye-slash");
+            icone.classList.add("bi-eye");
+        }
+
+        $(document).ready(function () {
+            $('#cpf').mask('000.000.000-00');
+            $('#telefone').mask('(00) 00000-0000');
+        });
+    }
+
+
+</script>
 @if (ViewBag.ErrorMessage != null)
 {
     <div style="color:red">@ViewBag.ErrorMessage</div>

@@ -21,11 +21,11 @@
         </div>
         <div class="form-group">
             <label>CNPJ:</label><br />
-            <input asp-for="CNPJ" class="form-control" /><p></p>
+            <input asp-for="CNPJ" id="cnpj" class="form-control" /><p></p>
         </div>
         <div class="form-group">
             <label>Telefone:</label><br />
-            <input asp-for="Telefone" class="form-control" /><p></p>
+            <input asp-for="Telefone" id="telefone" class="form-control" /><p></p>
         </div>
         <div class="form-group">
             <label>Email:</label><br />
@@ -36,3 +36,11 @@
         </div>
     </form>
 </div>
+@section Scripts {
+    <script>
+        $(function(){
+            $('#cnpj').mask('00.000.000/0000-00', {reverse: true});
+            $('#telefone').mask('(00) 00000-0000');
+        });
+    </script>
+}
