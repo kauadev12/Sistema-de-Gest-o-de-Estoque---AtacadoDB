@@ -77,7 +77,6 @@ SELECT * FROM usuarios;
 
   * Produtos
   * Fornecedores
-  * Usuários
 * Controle de estoque e estoque mínimo
 * Pesquisa e filtros básicos
 * Dados iniciais de teste (seed.sql) para simulação de estoque real de tecnologia
